@@ -27,8 +27,9 @@
         <maven.javadoc.plugin.version>2.8</maven.javadoc.plugin.version>
         <maven.rar.plugin.version>2.2</maven.rar.plugin.version>
         <maven.bundle.plugin.version>2.3.6</maven.bundle.plugin.version>
-        <findbugs.maven.plugin.version>2.0.1</findbugs.maven.plugin.version>
-
+        <findbugs.maven.plugin.version>2.4.0</findbugs.maven.plugin.version>
+        <checkstyle.maven.plugin.version>2.9.1</checkstyle.maven.plugin.version>
+        <pmd.maven.plugin.version>2.7.1</pmd.maven.plugin.version>
         <junit.version>4.10</junit.version>
         <mockito.all.version>1.8.2</mockito.all.version>
     </properties>
@@ -57,6 +58,15 @@
                     <findbugsXmlOutput>true</findbugsXmlOutput>
                     <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
                     <xmlOutput>true</xmlOutput>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.maven.plugin.version}</version>
+                <configuration>
+                    <enableRulesSummary>false</enableRulesSummary>
                 </configuration>
             </plugin>
         </plugins>
@@ -111,7 +121,30 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    
+
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs.maven.plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.maven.plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${pmd.maven.plugin.version}</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
     <modules>
         <module>majal</module>
     </modules>
